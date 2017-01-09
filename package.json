@@ -1,0 +1,26 @@
+{
+  "name": "spodl",
+  "version": "1.0.0",
+  "description": "Spotify -> Local",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adhorrig/spodl.git"
+  },
+  "keywords": [
+    "spotify"
+  ],
+  "author": "Adam Horrigan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adhorrig/spodl/issues"
+  },
+  "homepage": "https://github.com/adhorrig/spodl#readme",
+  "dependencies": {
+    "async": "^2.1.4",
+    "request": "^2.79.0"
+  }
+}
