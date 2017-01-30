@@ -21,6 +21,7 @@
   "homepage": "https://github.com/adhorrig/spodl#readme",
   "dependencies": {
     "async": "^2.1.4",
-    "request": "^2.79.0"
+    "spotify-web-api-node": "^2.3.6",
+    "youtube-node": "^1.3.0"
   }
 }
