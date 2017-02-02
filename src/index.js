@@ -1,3 +1,4 @@
+var config = require('../config.js');
 var SpotifyWebApi = require('spotify-web-api-node');
 var YouTube = require('youtube-node');
 var sys = require('sys');
@@ -6,8 +7,8 @@ var child;
 
 //Spotify
 
-var clientId = 'spotify_client_id',
-    clientSecret = 'spotify_client_secret';
+var clientId = config.spotify.clientid,
+    clientSecret = config.spotify.clientsecret;
 
 var spotifyApi = new SpotifyWebApi({
   clientId : clientId,
@@ -17,7 +18,7 @@ var spotifyApi = new SpotifyWebApi({
 spotifyApi.clientCredentialsGrant()
   .then(function(data) {
     spotifyApi.setAccessToken(data.body['access_token']);
-    spotifyApi.getPlaylist('spotify_account_name', 'spotify_playlist_id')
+    spotifyApi.getPlaylist(config.spotify.username, config.spotify.playlistid)
     .then(function(data) {
       var searchTerm = data.body.tracks.items[0].track.artists[0].name + ': ' + data.body.tracks.items[0].track.name;
       console.log("Search term: "+searchTerm);
@@ -34,7 +35,7 @@ spotifyApi.clientCredentialsGrant()
 function yt(searchTerm){
   var youTube = new YouTube();
 
-  youTube.setKey('youtube_api_key');
+  youTube.setKey(config.youtube.apikey);
   youTube.search(searchTerm, 1, function(error, result) {
     if (error) {
       console.log(error);
