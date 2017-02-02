@@ -22,7 +22,8 @@ spotifyApi.clientCredentialsGrant()
     .then(function(data) {
       for(var i = 0; i < data.body.tracks.items.length; i++){
         var searchTerm = data.body.tracks.items[i].track.artists[0].name + ': ' + data.body.tracks.items[i].track.name;
-        yt(searchTerm);
+        // yt(searchTerm);
+      }
     }, function(err) {
       console.log('Something went wrong!', err);
     });
