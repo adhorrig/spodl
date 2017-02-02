@@ -1,3 +1,5 @@
+var username = process.argv[2];
+var playlistid = process.argv[3];
 var config = require('../config.js');
 var SpotifyWebApi = require('spotify-web-api-node');
 var YouTube = require('youtube-node');
@@ -18,11 +20,11 @@ var spotifyApi = new SpotifyWebApi({
 spotifyApi.clientCredentialsGrant()
   .then(function(data) {
     spotifyApi.setAccessToken(data.body['access_token']);
-    spotifyApi.getPlaylist(config.spotify.username, config.spotify.playlistid)
+    spotifyApi.getPlaylist(username, playlistid)
     .then(function(data) {
       for(var i = 0; i < data.body.tracks.items.length; i++){
         var searchTerm = data.body.tracks.items[i].track.artists[0].name + ': ' + data.body.tracks.items[i].track.name;
-        // yt(searchTerm);
+        yt(searchTerm);
       }
     }, function(err) {
       console.log('Something went wrong!', err);
