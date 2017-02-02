@@ -20,9 +20,9 @@ spotifyApi.clientCredentialsGrant()
     spotifyApi.setAccessToken(data.body['access_token']);
     spotifyApi.getPlaylist(config.spotify.username, config.spotify.playlistid)
     .then(function(data) {
-      var searchTerm = data.body.tracks.items[0].track.artists[0].name + ': ' + data.body.tracks.items[0].track.name;
-      console.log("Search term: "+searchTerm);
-      yt(searchTerm);
+      for(var i = 0; i < data.body.tracks.items.length; i++){
+        var searchTerm = data.body.tracks.items[i].track.artists[0].name + ': ' + data.body.tracks.items[i].track.name;
+        yt(searchTerm);
     }, function(err) {
       console.log('Something went wrong!', err);
     });
