@@ -55,7 +55,13 @@ function yt(searchTerm){
 //Downloading
 
 function dl(url){
-  child = exec("youtube-dl --extract-audio --audio-format mp3 "+url, function(error, stdout, stderr){
+  var command;
+  if(process.argv[4] === 'video'){
+    command = 'youtube-dl ';
+  } else {
+    command = 'youtube-dl --extract-audio --audio-format mp3 ';
+  }
+  child = exec(command+url, function(error, stdout, stderr){
     if(error){
       console.log('exec error: '+error);
     } else {

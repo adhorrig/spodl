@@ -28,4 +28,22 @@ npm install
 
 ## Running
 
-Open ```config.js``` and substitute in your Spotify clientId and clientSecret, as well as your Youtube API Key. After this you can then run ```node src/index.js spotify_account_name spotify_playlist_id``` i.e. ```node src/index.js adam4543 7KLGqYIgcNeoWepuZ2sjXC```. This will download all songs from the playlist to the current directory, as such I'd suggest creating a new directory and running the script from there.
+Open ```config.js``` and substitute in your Spotify clientId and clientSecret, as well as your Youtube API Key. After this you can then run ```node src/index.js spotify_account_name spotify_playlist_id```
+
+For example:
+
+```
+node src/index.js adam4543 7KLGqYIgcNeoWepuZ2sjXC
+```
+
+This will download all songs from the playlist to the current directory, as such I'd suggest creating a new directory and running the script from there.
+
+If you would like to also download the music video, rather than just audio you can include ```video``` at the end of the command.
+
+For example:
+
+```
+node src/index.js adam4543 7KLGqYIgcNeoWepuZ2sjXC video
+```
+
+If ```video``` is not specified, only the audio will be downloaded.
