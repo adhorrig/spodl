@@ -36,7 +36,7 @@ For example:
 node src/index.js adam4543 7KLGqYIgcNeoWepuZ2sjXC
 ```
 
-This will download all songs from the playlist to the current directory, as such I'd suggest creating a new directory and running the script from there.
+This will create a new directory using the playlist id and download all songs from the playlist into that directory.
 
 If you would like to also download the music video, rather than just audio you can include ```video``` at the end of the command.
 
