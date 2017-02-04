@@ -56,5 +56,5 @@ const dl = (url) => exec(cmd+url, dlCb);
 
 //Run
 spotifyApi.clientCredentialsGrant()
-  .then(search)
+  .then(getPlaylist)
   .catch(err=> console.log('Something went wrong when retrieving an access token', err));
