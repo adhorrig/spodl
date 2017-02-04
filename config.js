@@ -1,10 +1,9 @@
-var config = {};
-
-config.spotify = {};
-config.youtube = {};
-
-config.spotify.clientid = '';
-config.spotify.clientsecret = '';
-config.youtube.apikey = '';
-
-module.exports = config;
+module.exports = {
+  spotify : {
+    clientid : '',
+    clientsecret : ''
+  },
+  youtube : {
+    apikey : 'AIzaSyBZAv-joqwr52k22wRAUO1KQjZzYDMEBB4'
+  }
+};
