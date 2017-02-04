@@ -12,6 +12,12 @@ var sys = require('sys');
 var exec = require('child_process').exec;
 var child;
 
+var fs = require('fs');
+
+if (!fs.existsSync(playlistid)){
+  fs.mkdirSync(playlistid);
+}
+
 //Spotify
 
 var clientId = config.spotify.clientid,
@@ -62,9 +68,9 @@ function yt(searchTerm){
 function dl(url){
   var command;
   if(process.argv[4] === 'video'){
-    command = 'youtube-dl ';
+    command = 'youtube-dl -o "' + playlistid + '%(title)s.%(ext)s" ';
   } else {
-    command = 'youtube-dl --extract-audio --audio-format mp3 ';
+    command = 'youtube-dl -o "' + playlistid + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
   }
   child = exec(command+url, function(error, stdout, stderr){
     if(error){
