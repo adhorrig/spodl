@@ -1,82 +1,61 @@
-if (process.argv.length >= 4){
-  var username = process.argv[2];
-  var playlistid = process.argv[3];
-} else {
+if (process.argv.length < 4)
   console.error('spodl requires 2 arguments. The spotify username and playlist url.');
-}
 
-var config = require('../config.js');
-var SpotifyWebApi = require('spotify-web-api-node');
-var YouTube = require('youtube-node');
-var sys = require('sys');
-var exec = require('child_process').exec;
-var child;
+const username = process.argv[2];
+const playlistid = process.argv[3];
+const config = require('../config.js');
+const SpotifyWebApi = require('spotify-web-api-node');
+const YouTube = require('youtube-node');
+const util = require('util');
+const exec = require('child_process').exec;
+const cmd = process.argv[4] === 'video' ? 'youtube-dl ' :
+  'youtube-dl --extract-audio --audio-format mp3 ';
 
-var fs = require('fs');
+// helpers
+const createSearchTerm = e => e.track.artists[0].name + ': ' + e.track.name;
+const search = (data) => data.body.tracks.items.forEach(e=>yt(createSearchTerm(e)))
+const createYouTubeId = (result) => result.items[0].id.videoId;
+const createYouTubeUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
 
-if (!fs.existsSync(playlistid)){
-  fs.mkdirSync(playlistid);
-}
+// init youtube and spotify apis
+const youTube = new YouTube();
+youTube.setKey(config.youtube.apikey);
 
-//Spotify
-
-var clientId = config.spotify.clientid,
-    clientSecret = config.spotify.clientsecret;
-
-var spotifyApi = new SpotifyWebApi({
-  clientId : clientId,
-  clientSecret : clientSecret
+const spotifyApi = new SpotifyWebApi({
+  clientId : config.spotify.clientid,
+  clientSecret : config.spotify.clientsecret
 });
 
-spotifyApi.clientCredentialsGrant()
-  .then(function(data) {
-    spotifyApi.setAccessToken(data.body['access_token']);
-    spotifyApi.getPlaylist(username, playlistid)
-    .then(function(data) {
-      for(var i = 0; i < data.body.tracks.items.length; i++){
-        var searchTerm = data.body.tracks.items[i].track.artists[0].name + ': ' + data.body.tracks.items[i].track.name;
-        yt(searchTerm);
-      }
-    }, function(err) {
-      console.log('Something went wrong!', err);
-    });
-  }, function(err) {
-        console.log('Something went wrong when retrieving an access token', err);
-  });
-
-//Youtube
-
-function yt(searchTerm){
-  var youTube = new YouTube();
-
-  youTube.setKey(config.youtube.apikey);
-  youTube.search(searchTerm, 1, function(error, result) {
-    if (error) {
-      console.log(error);
-    }
-    else {
-      var id = result.items[0].id.videoId
-      var url = 'https://www.youtube.com/watch?v='+id;
-      console.log('Youtube url: '+url);
-      dl(url);
-    }
-  });
-}
-
-//Downloading
-
-function dl(url){
-  var command;
-  if(process.argv[4] === 'video'){
-    command = 'youtube-dl -o "' + playlistid + '/%(title)s.%(ext)s" ';
-  } else {
-    command = 'youtube-dl -o "' + playlistid + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
+// callbacks
+const ytCb = (err, res) => {
+  if (err) console.log(err)
+  else {
+    let url = createYouTubeUrl(createYouTubeId(res))
+    console.log('Youtube url: '+url);
+    dl(url);
   }
-  child = exec(command+url, function(error, stdout, stderr){
-    if(error){
-      console.log('exec error: '+error);
-    } else {
-      sys.print('stdout: '+stdout);
-    }
-  });
 }
+
+const dlCb = (err, stdout, stderr) => {
+  if(error) console.log('exec error: '+error);
+  else      util.print('stdout: '+stdout);
+}
+
+// Spotify
+const getPlaylist = (data) => {
+  spotifyApi.setAccessToken(data.body['access_token']);
+  spotifyApi.getPlaylist(username, playlistid)
+    .then(search)
+    .catch(err => console.log('Something went wrong!', err))
+}
+
+// Youtube
+const yt = (searchTerm) => youTube.search(searchTerm, 1, ytCb);
+
+// Downloading
+const dl = (url) => exec(cmd+url, dlCb);
+
+//Run
+spotifyApi.clientCredentialsGrant()
+  .then(getPlaylist)
+  .catch(err=> console.log('Something went wrong when retrieving an access token', err));
