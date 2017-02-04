@@ -4,6 +4,6 @@ module.exports = {
     clientsecret : ''
   },
   youtube : {
-    apikey : 'AIzaSyBZAv-joqwr52k22wRAUO1KQjZzYDMEBB4'
+    apikey : ''
   }
 };
