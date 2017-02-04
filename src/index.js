@@ -11,14 +11,20 @@ const exec = require('child_process').exec;
 const cmd = process.argv[4] === 'video' ? 'youtube-dl ' :
   'youtube-dl --extract-audio --audio-format mp3 ';
 
-const youTube = new YouTube();
-youTube.setKey(config.youtube.apikey);
-
 // helpers
 const createSearchTerm = e => e.track.artists[0].name + ': ' + e.track.name;
 const search = (data) => data.body.tracks.items.forEach(e=>yt(createSearchTerm(e)))
 const createYouTubeId = (result) => result.items[0].id.videoId;
 const createYouTubeUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
+
+// init youtube and spotify apis
+const youTube = new YouTube();
+youTube.setKey(config.youtube.apikey);
+
+const spotifyApi = new SpotifyWebApi({
+  clientId : config.spotify.clientid,
+  clientSecret : config.spotify.clientsecret
+});
 
 // callbacks
 const ytCb = (err, res) => {
@@ -35,12 +41,7 @@ const dlCb = (err, stdout, stderr) => {
   else      util.print('stdout: '+stdout);
 }
 
-//Spotify
-const spotifyApi = new SpotifyWebApi({
-  clientId : config.spotify.clientid,
-  clientSecret : config.spotify.clientsecret
-});
-
+// Spotify
 const getPlaylist = (data) => {
   spotifyApi.setAccessToken(data.body['access_token']);
   spotifyApi.getPlaylist(username, playlistid)
@@ -48,10 +49,10 @@ const getPlaylist = (data) => {
     .catch(err => console.log('Something went wrong!', err))
 }
 
-//Youtube
+// Youtube
 const yt = (searchTerm) => youTube.search(searchTerm, 1, ytCb);
 
-//Downloading
+// Downloading
 const dl = (url) => exec(cmd+url, dlCb);
 
 //Run
