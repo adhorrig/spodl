@@ -68,7 +68,7 @@ function yt(searchTerm){
 function dl(url){
   var command;
   if(process.argv[4] === 'video'){
-    command = 'youtube-dl -o "' + playlistid + '%(title)s.%(ext)s" ';
+    command = 'youtube-dl -o "' + playlistid + '/%(title)s.%(ext)s" ';
   } else {
     command = 'youtube-dl -o "' + playlistid + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
   }
