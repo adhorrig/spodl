@@ -37,8 +37,8 @@ const ytCb = (err, res) => {
 }
 
 const dlCb = (err, stdout, stderr) => {
-  if(error) console.log('exec error: '+error);
-  else      util.print('stdout: '+stdout);
+  if(err) console.log('exec err: '+err);
+  else util.print('stdout: '+stdout);
 }
 
 //Spotify
