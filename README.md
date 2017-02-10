@@ -2,6 +2,8 @@
 
 A tool which can be ran from the command line to download a Spotify playlist through Youtube, via youtube-dl.
 
+Note: This is for educational purposes and I am not responsible for those who use the tool.
+
 ## Installation
 
 ```
