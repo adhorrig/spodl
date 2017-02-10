@@ -20,13 +20,13 @@ npm install
 
 ## What you need
 
-1) Spotify client id and secret. (Gotten from: https://developer.spotify.com/)
+1) Spotify client id and secret. (Retreive at: https://developer.spotify.com/)
 
 2) Spotify account name and playlist ID. (Playlist ID is the alphanumeric string following /playlist/)
 
-2) Youtube API Key. (Gotten from: https://console.developers.google.com)
+2) Youtube API Key. (Retreive at: https://console.developers.google.com)
 
-3) Youtube-dl installed on your machine. (Gotten from: https://rg3.github.io/youtube-dl/)
+3) Youtube-dl installed on your machine. (Retreive at: https://rg3.github.io/youtube-dl/)
 
 ## Running
 
