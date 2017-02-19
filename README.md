@@ -30,7 +30,11 @@ npm install
 
 ## Running
 
-Open ```config.js``` and substitute in your Spotify client id and client secret, as well as your Youtube API Key. After this you can then run ```node src/index.js spotify_account_name spotify_playlist_id```
+Open ```config.js``` and substitute in your Spotify client id and client secret, as well as your Youtube API Key. 
+
+You can specify the directory you wish to download the playlist to in ```config.js```. For example, ```directory : '~/Music'```. If the directory is not specified, spodl will download the playlist to the spodl directory.
+
+After this you can then run ```node src/index.js spotify_account_name spotify_playlist_id```
 
 For example:
 

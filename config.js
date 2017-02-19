@@ -5,5 +5,6 @@ module.exports = {
   },
   youtube : {
     apikey : ''
-  }
+  },
+  directory : ''
 };
