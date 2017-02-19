@@ -12,7 +12,7 @@ const fs = require('fs');
 const util = require('util');
 const exec = require('child_process').exec;
 let playlistName = '';
-let dir = config.directory;
+const dir = config.directory;
 
 const youTube = new YouTube();
 youTube.setKey(config.youtube.apikey);
