@@ -23,7 +23,7 @@ const createDirectory = (name) => {
 }
 
 // helpers
-const createSearchTerm = e => e.track.artists[0].name + ': ' + e.track.name;
+const createSearchTerm = e => e.track.artists[0].name + ' - ' + e.track.name;
 const search = (data) => {
   data.body.tracks.items.forEach(e=>yt(createSearchTerm(e)))
   createDirectory(data.body.name);
