@@ -12,6 +12,7 @@ const fs = require('fs');
 const util = require('util');
 const exec = require('child_process').exec;
 let playlistName = '';
+let dir = config.directory;
 
 const youTube = new YouTube();
 youTube.setKey(config.youtube.apikey);
@@ -64,8 +65,8 @@ const yt = (searchTerm) => youTube.search(searchTerm, 1, ytCb);
 
 //Downloading
 const dl = (url) => {
-  const cmd = process.argv[4] === 'video' ? 'youtube-dl -o "' + playlistName + '/%(title)s.%(ext)s"'  :
-  'youtube-dl -o "' + playlistName + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
+  const cmd = process.argv[4] === 'video' ? 'youtube-dl -o "' + dir + playlistName + '/%(title)s.%(ext)s"'  :
+  'youtube-dl -o "' + dir + playlistName + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
   exec(cmd+url, dlCb);
 }
 
