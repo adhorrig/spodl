@@ -49,3 +49,7 @@ node src/index.js adam4543 7KLGqYIgcNeoWepuZ2sjXC video
 ```
 
 If ```video``` is not specified, only the audio will be downloaded.
+
+## Contributing
+
+Pull requests are happily accepted so feel free to hack away.
