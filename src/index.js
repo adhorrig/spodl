@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 if (process.argv.length < 4){
   console.error('spodl requires 2 arguments. The spotify username and playlist url.');
   process.exit()

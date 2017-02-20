@@ -18,6 +18,13 @@ cd spodl
 npm install
 ```
 
+To install spodl globally, run:
+
+```
+npm install -g
+```
+
+
 ## What you need
 
 1) Spotify client id and secret from [here.](https://developer.spotify.com/)
@@ -32,14 +39,14 @@ npm install
 
 Open ```config.js``` and substitute in your Spotify client id and client secret, as well as your Youtube API Key. 
 
-You can specify the directory you wish to download the playlist to in ```config.js```. For example, ```directory : '~/Music'```. If the directory is not specified, spodl will download the playlist to the spodl directory.
+You can specify the directory you wish to download the playlist to in ```config.js```. For example, ```directory : '~/Music/'```. If the directory is not specified, spodl will download the playlist to the spodl directory.
 
-After this you can then run ```node src/index.js spotify_account_name spotify_playlist_id```
+After this you can then run ```spodl spotify_account_name spotify_playlist_id```
 
 For example:
 
 ```
-node src/index.js adam4543 7KLGqYIgcNeoWepuZ2sjXC
+spodl adam4543 7KLGqYIgcNeoWepuZ2sjXC
 ```
 
 This will create a new directory using the playlist name and download all songs from the playlist into that directory.
@@ -49,7 +56,7 @@ If you would like to also download the music video, rather than just audio you c
 For example:
 
 ```
-node src/index.js adam4543 7KLGqYIgcNeoWepuZ2sjXC video
+spodl adam4543 7KLGqYIgcNeoWepuZ2sjXC video
 ```
 
 If ```video``` is not specified, only the audio will be downloaded.
