@@ -15,13 +15,7 @@ cd spodl
 ```
 
 ```
-npm install
-```
-
-To install spodl globally, run:
-
-```
-npm install -g
+npm install -g 
 ```
 
 

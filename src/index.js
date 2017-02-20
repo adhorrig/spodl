@@ -19,17 +19,12 @@ const dir = config.directory;
 const youTube = new YouTube();
 youTube.setKey(config.youtube.apikey);
 
-const createDirectory = (name) => {
-  playlistName = name;
-  if (!fs.existsSync(playlistName))
-    fs.mkdirSync(playlistName);
-}
 
 // helpers
 const createSearchTerm = e => e.track.artists[0].name + ' - ' + e.track.name;
 const search = (data) => {
   data.body.tracks.items.forEach(e=>yt(createSearchTerm(e)))
-  createDirectory(data.body.name);
+  playlistName = data.body.name;
 }
 const createYouTubeId = (result) => result.items[0].id.videoId;
 const createYouTubeUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
