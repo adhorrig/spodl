@@ -7,14 +7,12 @@ if (process.argv.length < 4){
 
 const username = process.argv[2];
 const playlistid = process.argv[3];
-const config = require('../config.js');
 const SpotifyWebApi = require('spotify-web-api-node');
 const YouTube = require('youtube-node');
 const fs = require('fs');
 const util = require('util');
 const exec = require('child_process').exec;
 let playlistName = '';
-const dir = config.directory;
 
 const youTube = new YouTube();
 youTube.setKey(process.env.YOUTUBE_API_KEY);
@@ -62,8 +60,8 @@ const yt = (searchTerm) => youTube.search(searchTerm, 1, ytCb);
 
 //Downloading
 const dl = (url) => {
-  const cmd = process.argv[4] === 'video' ? 'youtube-dl -o "' + dir + playlistName + '/%(title)s.%(ext)s"'  :
-  'youtube-dl -o "' + dir + playlistName + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
+  const cmd = process.argv[4] === 'video' ? 'youtube-dl -o "' + playlistName + '/%(title)s.%(ext)s"'  :
+  'youtube-dl -o "' + playlistName + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
   exec(cmd+url, dlCb);
 }
 
