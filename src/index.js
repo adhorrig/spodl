@@ -17,19 +17,14 @@ let playlistName = '';
 const dir = config.directory;
 
 const youTube = new YouTube();
-youTube.setKey(config.youtube.apikey);
+youTube.setKey(process.env.YOUTUBE_API_KEY);
 
-const createDirectory = (name) => {
-  playlistName = name;
-  if (!fs.existsSync(playlistName))
-    fs.mkdirSync(playlistName);
-}
 
 // helpers
 const createSearchTerm = e => e.track.artists[0].name + ' - ' + e.track.name;
 const search = (data) => {
   data.body.tracks.items.forEach(e=>yt(createSearchTerm(e)))
-  createDirectory(data.body.name);
+  playlistName = data.body.name;
 }
 const createYouTubeId = (result) => result.items[0].id.videoId;
 const createYouTubeUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
@@ -51,8 +46,8 @@ const dlCb = (err, stdout, stderr) => {
 
 //Spotify
 const spotifyApi = new SpotifyWebApi({
-  clientId : config.spotify.clientid,
-  clientSecret : config.spotify.clientsecret
+  clientId : process.env.SPOTIFY_CLIENT_ID,
+  clientSecret : process.env.SPOTIPY_CLIENT_SECRET
 });
 
 const getPlaylist = (data) => {
