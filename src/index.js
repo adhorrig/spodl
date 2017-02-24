@@ -17,7 +17,7 @@ let playlistName = '';
 const dir = config.directory;
 
 const youTube = new YouTube();
-youTube.setKey(config.youtube.apikey);
+youTube.setKey(process.env.YOUTUBE_API_KEY);
 
 
 // helpers
@@ -46,8 +46,8 @@ const dlCb = (err, stdout, stderr) => {
 
 //Spotify
 const spotifyApi = new SpotifyWebApi({
-  clientId : config.spotify.clientid,
-  clientSecret : config.spotify.clientsecret
+  clientId : process.env.SPOTIFY_CLIENT_ID,
+  clientSecret : process.env.SPOTIPY_CLIENT_SECRET
 });
 
 const getPlaylist = (data) => {
