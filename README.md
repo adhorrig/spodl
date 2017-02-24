@@ -8,7 +8,6 @@ Note: This is for educational purposes and I am not responsible for those who us
 
 ```
 npm install -g spodl
-
 ```
 
 
