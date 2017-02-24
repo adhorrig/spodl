@@ -7,21 +7,7 @@ Note: This is for educational purposes and I am not responsible for those who us
 ## Installation
 
 ```
-git clone https://github.com/adhorrig/spodl.git
-```
-
-```
-cd spodl
-```
-
-```
-npm install
-```
-
-To install spodl globally, run:
-
-```
-npm install -g
+npm install -g spodl
 ```
 
 
@@ -37,9 +23,13 @@ npm install -g
 
 ## Running
 
-Open ```config.js``` and substitute in your Spotify client id and client secret, as well as your Youtube API Key. 
+Set the environment variables.
 
-You can specify the directory you wish to download the playlist to in ```config.js```. For example, ```directory : '~/Music/'```. If the directory is not specified, spodl will download the playlist to the spodl directory.
+```
+export SPOTIFY_CLIENT_ID='your-spotify-client-id'
+export SPOTIFY_CLIENT_SECRET='your-spotify-client-secret'
+export YOUTUBE_API_KEY='your_youtube_api_key'
+```
 
 After this you can then run ```spodl spotify_account_name spotify_playlist_id```
 

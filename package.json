@@ -1,29 +1,32 @@
 {
-  "name": "spodl",
-  "version": "1.0.0",
-  "description": "Spotify -> Local",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/adhorrig/spodl.git"
-  },
-  "keywords": [
-    "spotify"
-  ],
-  "author": "Adam Horrigan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/adhorrig/spodl/issues"
-  },
-  "bin":{
-  	"spodl": "src/index.js"
-  },
-  "homepage": "https://github.com/adhorrig/spodl#readme",
-  "dependencies": {
-    "spotify-web-api-node": "^2.3.6",
-    "youtube-node": "^1.3.0"
-  }
+	"name": "spodl",
+	"version": "1.0.0",
+	"description": "Spotify -> Local",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/anthonybloomer/spodl.git"
+	},
+	"keywords": [
+		"spotify", "youtube", "youtube-dl"
+	],
+	"contributors": [
+		"Adam Horrigan",
+		"Anthony Bloomer"
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/anthonybloomer/spodl/issues"
+	},
+	"bin":{
+		"spodl": "src/index.js"
+	},
+	"homepage": "https://github.com/anthonybloomer/spodl#readme",
+	"dependencies": {
+		"spotify-web-api-node": "^2.3.6",
+		"youtube-node": "^1.3.0"
+	}
 }

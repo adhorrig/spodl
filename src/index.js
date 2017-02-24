@@ -7,29 +7,22 @@ if (process.argv.length < 4){
 
 const username = process.argv[2];
 const playlistid = process.argv[3];
-const config = require('../config.js');
 const SpotifyWebApi = require('spotify-web-api-node');
 const YouTube = require('youtube-node');
 const fs = require('fs');
 const util = require('util');
 const exec = require('child_process').exec;
 let playlistName = '';
-const dir = config.directory;
 
 const youTube = new YouTube();
-youTube.setKey(config.youtube.apikey);
+youTube.setKey(process.env.YOUTUBE_API_KEY);
 
-const createDirectory = (name) => {
-  playlistName = name;
-  if (!fs.existsSync(playlistName))
-    fs.mkdirSync(playlistName);
-}
 
 // helpers
 const createSearchTerm = e => e.track.artists[0].name + ' - ' + e.track.name;
 const search = (data) => {
   data.body.tracks.items.forEach(e=>yt(createSearchTerm(e)))
-  createDirectory(data.body.name);
+  playlistName = data.body.name;
 }
 const createYouTubeId = (result) => result.items[0].id.videoId;
 const createYouTubeUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
@@ -51,8 +44,8 @@ const dlCb = (err, stdout, stderr) => {
 
 //Spotify
 const spotifyApi = new SpotifyWebApi({
-  clientId : config.spotify.clientid,
-  clientSecret : config.spotify.clientsecret
+  clientId : process.env.SPOTIFY_CLIENT_ID,
+  clientSecret : process.env.SPOTIFY_CLIENT_SECRET
 });
 
 const getPlaylist = (data) => {
@@ -67,8 +60,8 @@ const yt = (searchTerm) => youTube.search(searchTerm, 1, ytCb);
 
 //Downloading
 const dl = (url) => {
-  const cmd = process.argv[4] === 'video' ? 'youtube-dl -o "' + dir + playlistName + '/%(title)s.%(ext)s"'  :
-  'youtube-dl -o "' + dir + playlistName + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
+  const cmd = process.argv[4] === 'video' ? 'youtube-dl -o "' + playlistName + '/%(title)s.%(ext)s"'  :
+  'youtube-dl -o "' + playlistName + '/%(title)s.%(ext)s" --extract-audio --audio-format mp3 ';
   exec(cmd+url, dlCb);
 }
 
