@@ -24,7 +24,7 @@ npm install -g spodl
 
 ## Running
 
-Set the environement variables.
+Set the environment variables.
 
 ```
 export SPOTIPY_CLIENT_ID='your-spotify-client-id'
