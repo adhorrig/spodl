@@ -47,7 +47,7 @@ const dlCb = (err, stdout, stderr) => {
 //Spotify
 const spotifyApi = new SpotifyWebApi({
   clientId : process.env.SPOTIFY_CLIENT_ID,
-  clientSecret : process.env.SPOTIPY_CLIENT_SECRET
+  clientSecret : process.env.SPOTIFY_CLIENT_SECRET
 });
 
 const getPlaylist = (data) => {
