@@ -11,7 +11,7 @@
 		"url": "git+https://github.com/anthonybloomer/spodl.git"
 	},
 	"keywords": [
-		"spotify"
+		"spotify", "youtube", "youtube-dl"
 	],
 	"contributors": [
 		"Adam Horrigan",
