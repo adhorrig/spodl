@@ -27,8 +27,8 @@ npm install -g spodl
 Set the environment variables.
 
 ```
-export SPOTIPY_CLIENT_ID='your-spotify-client-id'
-export SPOTIPY_CLIENT_SECRET='your-spotify-client-secret'
+export SPOTIFY_CLIENT_ID='your-spotify-client-id'
+export SPOTIFY_CLIENT_SECRET='your-spotify-client-secret'
 export YOUTUBE_API_KEY='your_youtube_api_key'
 ```
 
